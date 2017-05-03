@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>忘川河</title>
+  <subtitle>佛说彼岸 无生无死 无若无悲 无欲无求</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://marlondu.github.io/"/>
+  <updated>2017-05-02T14:36:08.304Z</updated>
+  <id>https://marlondu.github.io/</id>
+  
+  <author>
+    <name>marlondu</name>
+    <email>aduchuan@126.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>orange搭建全纪录</title>
+    <link href="https://marlondu.github.io/2017/05/02/orange%E6%90%AD%E5%BB%BA%E5%85%A8%E7%BA%AA%E5%BD%95/"/>
+    <id>https://marlondu.github.io/2017/05/02/orange搭建全纪录/</id>
+    <published>2017-05-02T14:19:42.000Z</published>
+    <updated>2017-05-02T14:36:08.304Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近开始在研究openresty和一个叫orange的项目，想要实现对服务器请求相应情况的监控和统计。废话不多说，先把环境搭建起来，再慢慢研究。这时搭建orange项目的整个过程和过程中遇到的问题，记录下来，方便以后查阅和参考。&lt;/p&gt;
+&lt;h2 id=&quot;安装openrest
+    
+    </summary>
+    
+      <category term="nginx" scheme="https://marlondu.github.io/categories/nginx/"/>
+    
+    
+      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
+    
+      <category term="openresty" scheme="https://marlondu.github.io/tags/openresty/"/>
+    
+      <category term="nginx" scheme="https://marlondu.github.io/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一些文章</title>
+    <link href="https://marlondu.github.io/2017/04/30/%E4%B8%80%E4%BA%9B%E6%96%87%E7%AB%A0/"/>
+    <id>https://marlondu.github.io/2017/04/30/一些文章/</id>
+    <published>2017-04-30T15:55:17.000Z</published>
+    <updated>2017-05-03T12:42:10.447Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在一些技术博客上看到的一些文章，可以作为一些参考，在这里收藏一下。&lt;/p&gt;
+&lt;h3 id=&quot;JVM调优总结&quot;&gt;&lt;a href=&quot;#JVM调优总结&quot; class=&quot;headerlink&quot; title=&quot;JVM调优总结&quot;&gt;&lt;/a&gt;JVM调优总结&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a 
+    
+    </summary>
+    
+      <category term="others" scheme="https://marlondu.github.io/categories/others/"/>
+    
+    
+      <category term="编程" scheme="https://marlondu.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Java" scheme="https://marlondu.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Lua元表</title>
+    <link href="https://marlondu.github.io/2017/04/30/Lua%E5%85%83%E8%A1%A8/"/>
+    <id>https://marlondu.github.io/2017/04/30/Lua元表/</id>
+    <published>2017-04-30T05:21:57.000Z</published>
+    <updated>2017-05-02T14:35:53.353Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;预定义操作集合&quot;&gt;&lt;a href=&quot;#预定义操作集合&quot; class=&quot;headerlink&quot; title=&quot;预定义操作集合&quot;&gt;&lt;/a&gt;预定义操作集合&lt;/h2&gt;&lt;p&gt;其实不仅仅是LUA, 在大多数编程语言中，每一种类型的值，都有 一套预定义的操作集合。例如，整形的数
+    
+    </summary>
+    
+      <category term="Lua" scheme="https://marlondu.github.io/categories/Lua/"/>
+    
+    
+      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
+    
+      <category term="openresty" scheme="https://marlondu.github.io/tags/openresty/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>logback配置详解</title>
+    <link href="https://marlondu.github.io/2017/04/29/logback%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/"/>
+    <id>https://marlondu.github.io/2017/04/29/logback配置详解/</id>
+    <published>2017-04-29T08:53:34.000Z</published>
+    <updated>2017-04-30T05:31:40.731Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;logback是log4j作者设计的另一个开源日志组件。相对于log4j， 它拥有相当多的优势。比如更快的速度，在一些关键性能上提升10倍以上，而且初始化加载内存也更小了。此外，Logback-classic非常自然地实现了slf4j, 拥有充分的 文档等。因此使用logb
+    
+    </summary>
+    
+      <category term="Java" scheme="https://marlondu.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://marlondu.github.io/tags/Java/"/>
+    
+      <category term="日志" scheme="https://marlondu.github.io/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+</feed>
