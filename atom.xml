@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://marlondu.github.io/"/>
-  <updated>2017-05-02T14:36:08.304Z</updated>
+  <updated>2017-05-06T16:36:07.489Z</updated>
   <id>https://marlondu.github.io/</id>
   
   <author>
@@ -14,6 +14,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网易云音乐api</title>
+    <link href="https://marlondu.github.io/2017/05/06/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90api/"/>
+    <id>https://marlondu.github.io/2017/05/06/网易云音乐api/</id>
+    <published>2017-05-06T13:58:04.000Z</published>
+    <updated>2017-05-06T16:36:07.489Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为非常喜欢听网易云音乐，其社交化的功能真的非常的体验非常好，可以让有相同音乐爱好的人聚集在一起，一起互相交流。毕竟一边听歌一边看评论真的是非常的有意思。除此之外，其歌单功能，炫酷的界面等，可以称登上是良心之作。当然最有意思还是网友贡献的评论，有一段时间网易将得赞数最高的评
+    
+    </summary>
+    
+      <category term="爬虫" scheme="https://marlondu.github.io/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="爬虫" scheme="https://marlondu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>orange搭建全纪录</title>
@@ -58,9 +78,9 @@
       <category term="others" scheme="https://marlondu.github.io/categories/others/"/>
     
     
-      <category term="Java" scheme="https://marlondu.github.io/tags/Java/"/>
-    
       <category term="编程" scheme="https://marlondu.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Java" scheme="https://marlondu.github.io/tags/Java/"/>
     
   </entry>
   
