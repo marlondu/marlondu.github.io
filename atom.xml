@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>忘川河</title>
-  <subtitle>佛说彼岸 无生无死 无若无悲 无欲无求</subtitle>
+  <subtitle>佛说彼岸 无生无死 无苦无悲 无欲无求</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://marlondu.github.io/"/>
-  <updated>2017-05-06T16:36:07.489Z</updated>
+  <updated>2017-05-09T14:07:32.936Z</updated>
   <id>https://marlondu.github.io/</id>
   
   <author>
@@ -16,11 +16,54 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>几种常见排序算法</title>
+    <link href="https://marlondu.github.io/2017/05/09/%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+    <id>https://marlondu.github.io/2017/05/09/几种常见排序算法/</id>
+    <published>2017-05-09T13:49:31.000Z</published>
+    <updated>2017-05-09T14:07:32.936Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;快速排序&quot;&gt;&lt;a href=&quot;#快速排序&quot; class=&quot;headerlink&quot; title=&quot;快速排序&quot;&gt;&lt;/a&gt;快速排序&lt;/h2&gt;&lt;p&gt;该方法的基本思想是：&lt;br&gt;1．先从数列中取出一个数作为基准数。&lt;br&gt;2．分区过程，将比这个数大的数全放到它的右边，小于或
+    
+    </summary>
+    
+      <category term="数据结构与算法" scheme="https://marlondu.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://marlondu.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Lua-Nginx模块</title>
+    <link href="https://marlondu.github.io/2017/05/09/Lua-Nginx%E6%A8%A1%E5%9D%97/"/>
+    <id>https://marlondu.github.io/2017/05/09/Lua-Nginx模块/</id>
+    <published>2017-05-09T13:34:17.000Z</published>
+    <updated>2017-05-13T13:07:09.505Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;名称&quot;&gt;&lt;a href=&quot;#名称&quot; class=&quot;headerlink&quot; title=&quot;名称&quot;&gt;&lt;/a&gt;名称&lt;/h2&gt;&lt;p&gt;ngx_http_lua_module - 将Lua的功能嵌入到Nginx HTTP服务器中。&lt;/p&gt;
+&lt;p&gt;这个模块没有与Nginx源码一
+    
+    </summary>
+    
+      <category term="nginx" scheme="https://marlondu.github.io/categories/nginx/"/>
+    
+    
+      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
+    
+      <category term="nginx" scheme="https://marlondu.github.io/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
     <title>网易云音乐api</title>
     <link href="https://marlondu.github.io/2017/05/06/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90api/"/>
     <id>https://marlondu.github.io/2017/05/06/网易云音乐api/</id>
     <published>2017-05-06T13:58:04.000Z</published>
-    <updated>2017-05-06T16:36:07.489Z</updated>
+    <updated>2017-05-18T13:48:05.526Z</updated>
     
     <summary type="html">
     
@@ -40,12 +83,12 @@
     <link href="https://marlondu.github.io/2017/05/02/orange%E6%90%AD%E5%BB%BA%E5%85%A8%E7%BA%AA%E5%BD%95/"/>
     <id>https://marlondu.github.io/2017/05/02/orange搭建全纪录/</id>
     <published>2017-05-02T14:19:42.000Z</published>
-    <updated>2017-05-02T14:36:08.304Z</updated>
+    <updated>2017-05-09T14:05:49.966Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;最近开始在研究openresty和一个叫orange的项目，想要实现对服务器请求相应情况的监控和统计。废话不多说，先把环境搭建起来，再慢慢研究。这时搭建orange项目的整个过程和过程中遇到的问题，记录下来，方便以后查阅和参考。&lt;/p&gt;
-&lt;h2 id=&quot;安装openrest
+&lt;h2 id=&quot;安装前准备&quot;&gt;&lt;a 
     
     </summary>
     
@@ -54,9 +97,9 @@
     
       <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
     
-      <category term="openresty" scheme="https://marlondu.github.io/tags/openresty/"/>
-    
       <category term="nginx" scheme="https://marlondu.github.io/tags/nginx/"/>
+    
+      <category term="openresty" scheme="https://marlondu.github.io/tags/openresty/"/>
     
   </entry>
   
@@ -78,9 +121,9 @@
       <category term="others" scheme="https://marlondu.github.io/categories/others/"/>
     
     
-      <category term="Java" scheme="https://marlondu.github.io/tags/Java/"/>
-    
       <category term="编程" scheme="https://marlondu.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Java" scheme="https://marlondu.github.io/tags/Java/"/>
     
   </entry>
   
@@ -89,7 +132,7 @@
     <link href="https://marlondu.github.io/2017/04/30/Lua%E5%85%83%E8%A1%A8/"/>
     <id>https://marlondu.github.io/2017/04/30/Lua元表/</id>
     <published>2017-04-30T05:21:57.000Z</published>
-    <updated>2017-05-02T14:35:53.353Z</updated>
+    <updated>2017-05-07T08:21:05.448Z</updated>
     
     <summary type="html">
     
