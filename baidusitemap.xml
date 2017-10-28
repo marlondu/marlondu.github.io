@@ -4,6 +4,107 @@
 
     
   <url>
+    <loc>https://marlondu.github.io/2017/10/28/git%E5%B0%8F%E8%AE%B0/</loc>
+    <lastmod>2017-10-28T14:33:10.407Z</lastmod>
+    <data>
+        <display>
+        <title>git小记</title>
+        <pubTime>2017-10-28T14:31:19.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="others" url="https://marlondu.github.io/categories/others/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://marlondu.github.io/2017/08/03/postgresql%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2017-10-01T22:25:29.263Z</lastmod>
+    <data>
+        <display>
+        <title>postgresql安装配置</title>
+        <pubTime>2017-08-03T14:52:41.000Z</pubTime>
+        
+        <tag>DB</tag>
+         
+         
+           
+             
+              <breadCrumb title="DB" url="https://marlondu.github.io/categories/DB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://marlondu.github.io/2017/09/05/%E5%9F%BA%E4%BA%8Etoken%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/</loc>
+    <lastmod>2017-09-05T14:02:24.372Z</lastmod>
+    <data>
+        <display>
+        <title>基于token的身份验证</title>
+        <pubTime>2017-09-05T13:09:34.000Z</pubTime>
+        
+        <tag>token</tag>
+         
+         
+           
+             
+              <breadCrumb title="token" url="https://marlondu.github.io/categories/token/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://marlondu.github.io/2017/09/03/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-09-05T13:55:19.919Z</lastmod>
+    <data>
+        <display>
+        <title>redis学习笔记</title>
+        <pubTime>2017-09-03T06:48:01.000Z</pubTime>
+        
+        <tag>redis</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://marlondu.github.io/2017/05/02/orange%E6%90%AD%E5%BB%BA%E5%85%A8%E7%BA%AA%E5%BD%95/</loc>
+    <lastmod>2017-09-02T09:03:57.866Z</lastmod>
+    <data>
+        <display>
+        <title>orange搭建全纪录</title>
+        <pubTime>2017-05-02T14:19:42.000Z</pubTime>
+        
+        <tag>Lua</tag>
+         
+        <tag>nginx</tag>
+         
+        <tag>openresty</tag>
+         
+         
+           
+             
+              <breadCrumb title="nginx" url="https://marlondu.github.io/categories/nginx/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://marlondu.github.io/2017/05/06/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90api/</loc>
     <lastmod>2017-05-18T13:48:05.526Z</lastmod>
     <data>
@@ -66,30 +167,6 @@
 
     
   <url>
-    <loc>https://marlondu.github.io/2017/05/02/orange%E6%90%AD%E5%BB%BA%E5%85%A8%E7%BA%AA%E5%BD%95/</loc>
-    <lastmod>2017-05-09T14:05:49.966Z</lastmod>
-    <data>
-        <display>
-        <title>orange搭建全纪录</title>
-        <pubTime>2017-05-02T14:19:42.000Z</pubTime>
-        
-        <tag>Lua</tag>
-         
-        <tag>nginx</tag>
-         
-        <tag>openresty</tag>
-         
-         
-           
-             
-              <breadCrumb title="nginx" url="https://marlondu.github.io/categories/nginx/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://marlondu.github.io/2017/04/30/Lua%E5%85%83%E8%A1%A8/</loc>
     <lastmod>2017-05-07T08:21:05.448Z</lastmod>
     <data>
@@ -119,9 +196,9 @@
         <title>一些文章</title>
         <pubTime>2017-04-30T15:55:17.000Z</pubTime>
         
-        <tag>编程</tag>
-         
         <tag>Java</tag>
+         
+        <tag>编程</tag>
          
          
            

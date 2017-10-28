@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://marlondu.github.io/"/>
-  <updated>2017-05-09T14:07:32.936Z</updated>
+  <updated>2017-10-28T14:33:10.407Z</updated>
   <id>https://marlondu.github.io/</id>
   
   <author>
@@ -14,6 +14,85 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git小记</title>
+    <link href="https://marlondu.github.io/2017/10/28/git%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://marlondu.github.io/2017/10/28/git小记/</id>
+    <published>2017-10-28T14:31:19.000Z</published>
+    <updated>2017-10-28T14:33:10.407Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;git之ssh方式连接&quot;&gt;&lt;a href=&quot;#git之ssh方式连接&quot; class=&quot;headerlink&quot; title=&quot;git之ssh方式连接&quot;&gt;&lt;/a&gt;git之ssh方式连接&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://git.oschina.
+    
+    </summary>
+    
+      <category term="others" scheme="https://marlondu.github.io/categories/others/"/>
+    
+    
+      <category term="git" scheme="https://marlondu.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于token的身份验证</title>
+    <link href="https://marlondu.github.io/2017/09/05/%E5%9F%BA%E4%BA%8Etoken%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/"/>
+    <id>https://marlondu.github.io/2017/09/05/基于token的身份验证/</id>
+    <published>2017-09-05T13:09:34.000Z</published>
+    <updated>2017-09-05T14:02:24.372Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="token" scheme="https://marlondu.github.io/categories/token/"/>
+    
+    
+      <category term="token" scheme="https://marlondu.github.io/tags/token/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis学习笔记</title>
+    <link href="https://marlondu.github.io/2017/09/03/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://marlondu.github.io/2017/09/03/redis学习笔记/</id>
+    <published>2017-09-03T06:48:01.000Z</published>
+    <updated>2017-09-05T13:55:19.919Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;发布与订阅&quot;&gt;&lt;a href=&quot;#发布与订阅&quot; class=&quot;headerlink&quot; title=&quot;发布与订阅&quot;&gt;&lt;/a&gt;发布与订阅&lt;/h1&gt;
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="https://marlondu.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>postgresql安装配置</title>
+    <link href="https://marlondu.github.io/2017/08/03/postgresql%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"/>
+    <id>https://marlondu.github.io/2017/08/03/postgresql安装配置/</id>
+    <published>2017-08-03T14:52:41.000Z</published>
+    <updated>2017-10-01T22:25:29.263Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;安装postgresql客户端&lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;t
+    
+    </summary>
+    
+      <category term="DB" scheme="https://marlondu.github.io/categories/DB/"/>
+    
+    
+      <category term="DB" scheme="https://marlondu.github.io/tags/DB/"/>
+    
+  </entry>
   
   <entry>
     <title>几种常见排序算法</title>
@@ -83,7 +162,7 @@
     <link href="https://marlondu.github.io/2017/05/02/orange%E6%90%AD%E5%BB%BA%E5%85%A8%E7%BA%AA%E5%BD%95/"/>
     <id>https://marlondu.github.io/2017/05/02/orange搭建全纪录/</id>
     <published>2017-05-02T14:19:42.000Z</published>
-    <updated>2017-05-09T14:05:49.966Z</updated>
+    <updated>2017-09-02T09:03:57.866Z</updated>
     
     <summary type="html">
     
@@ -121,9 +200,9 @@
       <category term="others" scheme="https://marlondu.github.io/categories/others/"/>
     
     
-      <category term="编程" scheme="https://marlondu.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
-    
       <category term="Java" scheme="https://marlondu.github.io/tags/Java/"/>
+    
+      <category term="编程" scheme="https://marlondu.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
