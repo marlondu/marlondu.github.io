@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://marlondu.github.io/"/>
-  <updated>2017-10-28T14:33:10.407Z</updated>
+  <updated>2018-01-18T14:12:56.439Z</updated>
   <id>https://marlondu.github.io/</id>
   
   <author>
@@ -16,16 +16,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>redis学习笔记(二) 性能保障</title>
+    <link href="https://marlondu.github.io/2018/01/16/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BF%9D%E9%9A%9C/"/>
+    <id>https://marlondu.github.io/2018/01/16/redis学习笔记之性能保障/</id>
+    <published>2018-01-16T14:23:42.000Z</published>
+    <updated>2018-01-18T14:12:56.439Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇文章主要学习一下有哪些提高redis命令执行效率的方法，来最大限度的保障程序执行的性能，以前只是会用redis的一些基本的命令，但是对redis中的事务和流水线等的正确用法了解的不深。最近在工作中有用到，趁机好好学习一下。在学习之前，先看看几个基本的概念，包括redis
+    
+    </summary>
+    
+      <category term="DB" scheme="https://marlondu.github.io/categories/DB/"/>
+    
+    
+      <category term="redis" scheme="https://marlondu.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
     <title>git小记</title>
     <link href="https://marlondu.github.io/2017/10/28/git%E5%B0%8F%E8%AE%B0/"/>
     <id>https://marlondu.github.io/2017/10/28/git小记/</id>
     <published>2017-10-28T14:31:19.000Z</published>
-    <updated>2017-10-28T14:33:10.407Z</updated>
+    <updated>2018-01-16T15:22:52.933Z</updated>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;git之ssh方式连接&quot;&gt;&lt;a href=&quot;#git之ssh方式连接&quot; class=&quot;headerlink&quot; title=&quot;git之ssh方式连接&quot;&gt;&lt;/a&gt;git之ssh方式连接&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://git.oschina.
+      &lt;p&gt;Git是什么？&lt;/p&gt;
+&lt;p&gt;Git是目前世界上最先进的分布式版本控制系统（没有之一）。&lt;/p&gt;
+&lt;p&gt;Git有什么特点？简单来说就是：高端大气上档次！ – 廖雪峰&lt;/p&gt;
+&lt;p&gt;git大法好， git大法妙&lt;/p&gt;
+&lt;p&gt;git大法呱呱叫&lt;/p&gt;
+&lt;h3 id=&quot;git之
     
     </summary>
     
@@ -37,35 +61,19 @@
   </entry>
   
   <entry>
-    <title>基于token的身份验证</title>
-    <link href="https://marlondu.github.io/2017/09/05/%E5%9F%BA%E4%BA%8Etoken%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/"/>
-    <id>https://marlondu.github.io/2017/09/05/基于token的身份验证/</id>
-    <published>2017-09-05T13:09:34.000Z</published>
-    <updated>2017-09-05T14:02:24.372Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="token" scheme="https://marlondu.github.io/categories/token/"/>
-    
-    
-      <category term="token" scheme="https://marlondu.github.io/tags/token/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis学习笔记</title>
+    <title>redis学习笔记(一) 数据安全</title>
     <link href="https://marlondu.github.io/2017/09/03/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://marlondu.github.io/2017/09/03/redis学习笔记/</id>
     <published>2017-09-03T06:48:01.000Z</published>
-    <updated>2017-09-05T13:55:19.919Z</updated>
+    <updated>2018-01-16T15:12:30.339Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;发布与订阅&quot;&gt;&lt;a href=&quot;#发布与订阅&quot; class=&quot;headerlink&quot; title=&quot;发布与订阅&quot;&gt;&lt;/a&gt;发布与订阅&lt;/h1&gt;
+      &lt;p&gt;这篇笔记会介绍Redis的各个持久化选项，这些选项可以让用户将自己的数据存储到硬盘上面。接着将介绍如何通过Redis的 复制特性，把不断更新的数据副本存储到附加的机器上面，从而提升系统的性能和数据的可靠性。现在我们来看看Redis如何将数据存储到硬盘里面，使得数据在Redi
     
     </summary>
+    
+      <category term="DB" scheme="https://marlondu.github.io/categories/DB/"/>
     
     
       <category term="redis" scheme="https://marlondu.github.io/tags/redis/"/>
@@ -77,13 +85,11 @@
     <link href="https://marlondu.github.io/2017/08/03/postgresql%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"/>
     <id>https://marlondu.github.io/2017/08/03/postgresql安装配置/</id>
     <published>2017-08-03T14:52:41.000Z</published>
-    <updated>2017-10-01T22:25:29.263Z</updated>
+    <updated>2018-01-16T15:07:28.311Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;安装postgresql客户端&lt;/p&gt;
-&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;t
+      &lt;p&gt;最近在研究著名的网关系统kong,  kong使用了postgreSql来作为数据库， 以前从来没有接触过postgreSql, 这次终于有机会了解一下，话说postgreSql在最近一年中表现抢眼，市场占有率也越来越高，增长很快。因此把这次安装postgreSql的过程记
     
     </summary>
     
@@ -211,11 +217,11 @@
     <link href="https://marlondu.github.io/2017/04/30/Lua%E5%85%83%E8%A1%A8/"/>
     <id>https://marlondu.github.io/2017/04/30/Lua元表/</id>
     <published>2017-04-30T05:21:57.000Z</published>
-    <updated>2017-05-07T08:21:05.448Z</updated>
+    <updated>2018-01-18T13:04:08.963Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;预定义操作集合&quot;&gt;&lt;a href=&quot;#预定义操作集合&quot; class=&quot;headerlink&quot; title=&quot;预定义操作集合&quot;&gt;&lt;/a&gt;预定义操作集合&lt;/h2&gt;&lt;p&gt;其实不仅仅是LUA, 在大多数编程语言中，每一种类型的值，都有 一套预定义的操作集合。例如，整形的数
+      &lt;p&gt;在 Lua 5.1 语言中，元表 &lt;em&gt;(metatable)&lt;/em&gt; 的表现行为类似于 C++ 语言中的操作符重载，例如我们可以重载 “&lt;strong&gt;add” 元方法 &lt;em&gt;(metamethod)&lt;/em&gt;，来计算两个 Lua 数组的并集；或者重载 “&lt;/str
     
     </summary>
     
