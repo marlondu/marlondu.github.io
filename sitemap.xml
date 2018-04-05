@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://marlondu.github.io/2018/04/04/spring%E5%B0%8F%E8%AE%B0%E4%B9%8BBean/</loc>
+    
+    <lastmod>2018-04-04T14:10:49.707Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://marlondu.github.io/2018/01/20/GO%E8%AF%AD%E8%A8%80%E8%A7%A3%E6%83%91%E4%B9%8B%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8C%87%E9%92%88/</loc>
+    
+    <lastmod>2018-01-25T15:14:21.375Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://marlondu.github.io/2018/01/16/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BF%9D%E9%9A%9C/</loc>
     
-    <lastmod>2018-01-18T14:12:56.439Z</lastmod>
+    <lastmod>2018-01-20T03:07:59.659Z</lastmod>
     
   </url>
   

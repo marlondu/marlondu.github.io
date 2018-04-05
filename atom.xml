@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://marlondu.github.io/"/>
-  <updated>2018-01-18T14:12:56.439Z</updated>
+  <updated>2018-04-04T14:10:49.707Z</updated>
   <id>https://marlondu.github.io/</id>
   
   <author>
@@ -16,11 +16,56 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Spring小记之Bean</title>
+    <link href="https://marlondu.github.io/2018/04/04/spring%E5%B0%8F%E8%AE%B0%E4%B9%8BBean/"/>
+    <id>https://marlondu.github.io/2018/04/04/spring小记之Bean/</id>
+    <published>2018-04-04T12:41:27.000Z</published>
+    <updated>2018-04-04T14:10:49.707Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本次主要讲点与Bean有关的常用配置。&lt;/p&gt;
+&lt;h2 id=&quot;Bean的Scope&quot;&gt;&lt;a href=&quot;#Bean的Scope&quot; class=&quot;headerlink&quot; title=&quot;Bean的Scope&quot;&gt;&lt;/a&gt;Bean的Scope&lt;/h2&gt;&lt;p&gt;Scope也就是作用域
+    
+    </summary>
+    
+      <category term="Spring" scheme="https://marlondu.github.io/categories/Spring/"/>
+    
+    
+      <category term="Java" scheme="https://marlondu.github.io/tags/Java/"/>
+    
+      <category term="Spring" scheme="https://marlondu.github.io/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GO语言解惑(一)变量与指针</title>
+    <link href="https://marlondu.github.io/2018/01/20/GO%E8%AF%AD%E8%A8%80%E8%A7%A3%E6%83%91%E4%B9%8B%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8C%87%E9%92%88/"/>
+    <id>https://marlondu.github.io/2018/01/20/GO语言解惑之变量与指针/</id>
+    <published>2018-01-20T03:45:54.000Z</published>
+    <updated>2018-01-25T15:14:21.375Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;go语言语法简洁又实用，表达能力强，编译速度快，是一门值得我们学习的非常不错的工业类语言。这篇文章不会介绍详细的基础知识，只会介绍一些可能不太注意就会有疑惑的地方，例如变量基本类型，指针等。&lt;/p&gt;
+&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;零值初始化机制&quot;&gt;&lt;a href
+    
+    </summary>
+    
+      <category term="GO" scheme="https://marlondu.github.io/categories/GO/"/>
+    
+    
+      <category term="GO" scheme="https://marlondu.github.io/tags/GO/"/>
+    
+  </entry>
+  
+  <entry>
     <title>redis学习笔记(二) 性能保障</title>
     <link href="https://marlondu.github.io/2018/01/16/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BF%9D%E9%9A%9C/"/>
     <id>https://marlondu.github.io/2018/01/16/redis学习笔记之性能保障/</id>
     <published>2018-01-16T14:23:42.000Z</published>
-    <updated>2018-01-18T14:12:56.439Z</updated>
+    <updated>2018-01-20T03:07:59.659Z</updated>
     
     <summary type="html">
     
