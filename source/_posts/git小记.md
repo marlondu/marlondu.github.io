@@ -8,6 +8,18 @@ tags:
 - git
 ---
 
+
+
+Git是什么？
+
+Git是目前世界上最先进的分布式版本控制系统（没有之一）。
+
+Git有什么特点？简单来说就是：高端大气上档次！ -- 廖雪峰
+
+git大法好， git大法妙
+
+git大法呱呱叫
+
 ### git之ssh方式连接
 
 - [帮助](http://git.oschina.net/oschina/git-osc/wikis/%E5%B8%AE%E5%8A%A9)
@@ -50,4 +62,8 @@ git rebase upstream/master 或 git merge upstream/master
 git push -f origin master
 ```
 
-[七个你无法忽视的git使用技巧](http://www.oschina.net/news/68437/seven-git-hacks-you-just-cannot-ignore)
+
+
+> [权威官方文档](https://git-scm.com/book/zh/v2)
+
+> [七个你无法忽视的git使用技巧](http://www.oschina.net/news/68437/seven-git-hacks-you-just-cannot-ignore)

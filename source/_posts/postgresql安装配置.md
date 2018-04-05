@@ -8,6 +8,8 @@ tags:
 - DB
 ---
 
+最近在研究著名的网关系统kong,  kong使用了postgreSql来作为数据库， 以前从来没有接触过postgreSql, 这次终于有机会了解一下，话说postgreSql在最近一年中表现抢眼，市场占有率也越来越高，增长很快。因此把这次安装postgreSql的过程记录下来，为以后继续研究做个参考。本次是在ubuntu系统上安装的。
+
 ## 安装
 
 1. 安装postgresql客户端
