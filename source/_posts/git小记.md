@@ -64,6 +64,33 @@ git push -f origin master
 
 
 
+## reset --hard找回
+
+有时候你可能不小心降commit之后的文件reset --hard丢失了，我就这么干过。不过庆幸的是，这个也是可以找回的。那就是使用git reflog;
+
+```sh
+$ git reflog
+bfb3371 HEAD@{0}: checkout: moving from hexo to master
+bfb3371 HEAD@{1}: checkout: moving from master to hexo
+bfb3371 HEAD@{2}: reset: moving to HEAD^
+ca77d24 HEAD@{3}: checkout: moving from hexo to master
+bfb3371 HEAD@{4}: checkout: moving from master to hexo
+ca77d24 HEAD@{5}: commit: upgrade content
+bfb3371 HEAD@{6}: checkout: moving from hexo to master
+bfb3371 HEAD@{7}: checkout: moving from master to hexo
+bfb3371 HEAD@{8}: commit (initial): 添加hexo文件
+```
+
+找到你误reset的commit id, 然后再次执行reset
+
+```sh
+$ git reset --hard ca77d24
+```
+
+bingo, 丢失的文件又回来啦。
+
+
+
 > [权威官方文档](https://git-scm.com/book/zh/v2)
 
 > [七个你无法忽视的git使用技巧](http://www.oschina.net/news/68437/seven-git-hacks-you-just-cannot-ignore)
