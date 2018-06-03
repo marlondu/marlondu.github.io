@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://marlondu.github.io/"/>
-  <updated>2018-04-04T14:10:49.707Z</updated>
+  <updated>2018-06-03T12:48:53.171Z</updated>
   <id>https://marlondu.github.io/</id>
   
   <author>
@@ -16,11 +16,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>《世界军事》封面诗选</title>
+    <link href="https://marlondu.github.io/2018/06/03/%E4%B8%96%E7%95%8C%E5%86%9B%E4%BA%8B%E5%B0%81%E9%9D%A2%E8%AF%97%E9%80%89/"/>
+    <id>https://marlondu.github.io/2018/06/03/世界军事封面诗选/</id>
+    <published>2018-06-03T12:48:53.000Z</published>
+    <updated>2018-06-03T12:48:53.171Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;曾亦有时&quot;&gt;&lt;a href=&quot;#曾亦有时&quot; class=&quot;headerlink&quot; title=&quot;曾亦有时&quot;&gt;&lt;/a&gt;曾亦有时&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;曾亦有时&lt;/p&gt;
+&lt;p&gt;你酣卧在田间的树旁&lt;/p&gt;
+&lt;p&gt;听蟋蟀在篱笆下欢唱&lt;/p&gt;
+&lt;p&gt;曾亦有
+    
+    </summary>
+    
+      <category term="杂学" scheme="https://marlondu.github.io/categories/%E6%9D%82%E5%AD%A6/"/>
+    
+    
+      <category term="杂学" scheme="https://marlondu.github.io/tags/%E6%9D%82%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>zion项目启动</title>
+    <link href="https://marlondu.github.io/2018/04/14/shmily%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/"/>
+    <id>https://marlondu.github.io/2018/04/14/shmily项目启动/</id>
+    <published>2018-04-14T12:40:34.000Z</published>
+    <updated>2018-06-03T13:33:38.171Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在过去一年中，我投入时间和精力相对较多的一件事，便是研究了openresty并学习了一点Lua语言。虽然都并不深入，但基于这两者，在工作的过程中还是写了一些脚本，比如构建公司账户系统的token机制，还有其他一些关于日志收集，限流等功能。总觉得还不够，openresty是一
+    
+    </summary>
+    
+      <category term="Lua" scheme="https://marlondu.github.io/categories/Lua/"/>
+    
+    
+      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Spring小记之Bean</title>
     <link href="https://marlondu.github.io/2018/04/04/spring%E5%B0%8F%E8%AE%B0%E4%B9%8BBean/"/>
     <id>https://marlondu.github.io/2018/04/04/spring小记之Bean/</id>
     <published>2018-04-04T12:41:27.000Z</published>
-    <updated>2018-04-04T14:10:49.707Z</updated>
+    <updated>2018-04-05T03:50:05.616Z</updated>
     
     <summary type="html">
     
@@ -39,11 +83,11 @@
   </entry>
   
   <entry>
-    <title>GO语言解惑(一)变量与指针</title>
+    <title>Go语言解惑(一)变量与指针</title>
     <link href="https://marlondu.github.io/2018/01/20/GO%E8%AF%AD%E8%A8%80%E8%A7%A3%E6%83%91%E4%B9%8B%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8C%87%E9%92%88/"/>
     <id>https://marlondu.github.io/2018/01/20/GO语言解惑之变量与指针/</id>
     <published>2018-01-20T03:45:54.000Z</published>
-    <updated>2018-01-25T15:14:21.375Z</updated>
+    <updated>2018-04-05T03:50:05.609Z</updated>
     
     <summary type="html">
     
@@ -53,10 +97,10 @@
     
     </summary>
     
-      <category term="GO" scheme="https://marlondu.github.io/categories/GO/"/>
+      <category term="Go" scheme="https://marlondu.github.io/categories/Go/"/>
     
     
-      <category term="GO" scheme="https://marlondu.github.io/tags/GO/"/>
+      <category term="Go" scheme="https://marlondu.github.io/tags/Go/"/>
     
   </entry>
   
@@ -65,7 +109,7 @@
     <link href="https://marlondu.github.io/2018/01/16/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BF%9D%E9%9A%9C/"/>
     <id>https://marlondu.github.io/2018/01/16/redis学习笔记之性能保障/</id>
     <published>2018-01-16T14:23:42.000Z</published>
-    <updated>2018-01-20T03:07:59.659Z</updated>
+    <updated>2018-04-05T03:50:05.615Z</updated>
     
     <summary type="html">
     
@@ -85,7 +129,7 @@
     <link href="https://marlondu.github.io/2017/10/28/git%E5%B0%8F%E8%AE%B0/"/>
     <id>https://marlondu.github.io/2017/10/28/git小记/</id>
     <published>2017-10-28T14:31:19.000Z</published>
-    <updated>2018-01-16T15:22:52.933Z</updated>
+    <updated>2018-04-05T03:50:05.612Z</updated>
     
     <summary type="html">
     
@@ -110,7 +154,7 @@
     <link href="https://marlondu.github.io/2017/09/03/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://marlondu.github.io/2017/09/03/redis学习笔记/</id>
     <published>2017-09-03T06:48:01.000Z</published>
-    <updated>2018-01-16T15:12:30.339Z</updated>
+    <updated>2018-04-05T03:50:05.614Z</updated>
     
     <summary type="html">
     
@@ -130,7 +174,7 @@
     <link href="https://marlondu.github.io/2017/08/03/postgresql%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"/>
     <id>https://marlondu.github.io/2017/08/03/postgresql安装配置/</id>
     <published>2017-08-03T14:52:41.000Z</published>
-    <updated>2018-01-16T15:07:28.311Z</updated>
+    <updated>2018-04-05T03:50:05.613Z</updated>
     
     <summary type="html">
     
@@ -262,7 +306,7 @@
     <link href="https://marlondu.github.io/2017/04/30/Lua%E5%85%83%E8%A1%A8/"/>
     <id>https://marlondu.github.io/2017/04/30/Lua元表/</id>
     <published>2017-04-30T05:21:57.000Z</published>
-    <updated>2018-01-18T13:04:08.963Z</updated>
+    <updated>2018-04-05T03:50:05.611Z</updated>
     
     <summary type="html">
     
