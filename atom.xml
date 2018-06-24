@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://marlondu.github.io/"/>
-  <updated>2018-06-24T12:04:09.726Z</updated>
+  <updated>2018-06-03T13:46:42.300Z</updated>
   <id>https://marlondu.github.io/</id>
   
   <author>
@@ -14,26 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://marlondu.github.io/2018/06/24/my/"/>
-    <id>https://marlondu.github.io/2018/06/24/my/</id>
-    <published>2018-06-24T12:02:21.574Z</published>
-    <updated>2018-06-24T12:04:09.726Z</updated>
-    
-    <summary type="html">
-    
-      window.onload = function() {
-    let cname = returnCitySN.cname;
-    if (cname &amp;&amp; cname.indexOf(&quot;邯郸市&quot;) != -1) {
-        alert(&quot;你来了，我很高兴&quot;);
- 
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>《世界军事》封面诗选</title>
