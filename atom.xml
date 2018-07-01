@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://marlondu.github.io/"/>
-  <updated>2018-07-01T04:32:27.813Z</updated>
+  <updated>2018-07-01T05:53:29.039Z</updated>
   <id>https://marlondu.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://marlondu.github.io/2018/06/28/%E6%9D%8E%E6%B6%9B%E8%80%81%E5%B8%88ps%E6%91%84%E5%BD%B1%E5%90%8E%E6%9C%9F%E7%AC%94%E8%AE%B0/"/>
     <id>https://marlondu.github.io/2018/06/28/李涛老师ps摄影后期笔记/</id>
     <published>2018-06-28T13:38:03.000Z</published>
-    <updated>2018-07-01T04:32:27.813Z</updated>
+    <updated>2018-07-01T05:53:29.039Z</updated>
     
     <summary type="html">
     
@@ -246,9 +246,9 @@
       <category term="nginx" scheme="https://marlondu.github.io/categories/nginx/"/>
     
     
-      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
-    
       <category term="nginx" scheme="https://marlondu.github.io/tags/nginx/"/>
+    
+      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
     
   </entry>
   
@@ -289,11 +289,11 @@
       <category term="nginx" scheme="https://marlondu.github.io/categories/nginx/"/>
     
     
-      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
-    
       <category term="nginx" scheme="https://marlondu.github.io/tags/nginx/"/>
     
       <category term="openresty" scheme="https://marlondu.github.io/tags/openresty/"/>
+    
+      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
     
   </entry>
   
@@ -337,9 +337,9 @@
       <category term="Lua" scheme="https://marlondu.github.io/categories/Lua/"/>
     
     
-      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
-    
       <category term="openresty" scheme="https://marlondu.github.io/tags/openresty/"/>
+    
+      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
     
   </entry>
   
