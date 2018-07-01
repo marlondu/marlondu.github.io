@@ -246,9 +246,9 @@
       <category term="nginx" scheme="https://marlondu.github.io/categories/nginx/"/>
     
     
-      <category term="nginx" scheme="https://marlondu.github.io/tags/nginx/"/>
-    
       <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
+    
+      <category term="nginx" scheme="https://marlondu.github.io/tags/nginx/"/>
     
   </entry>
   
@@ -289,11 +289,11 @@
       <category term="nginx" scheme="https://marlondu.github.io/categories/nginx/"/>
     
     
+      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
+    
       <category term="nginx" scheme="https://marlondu.github.io/tags/nginx/"/>
     
       <category term="openresty" scheme="https://marlondu.github.io/tags/openresty/"/>
-    
-      <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
     
   </entry>
   
@@ -337,9 +337,9 @@
       <category term="Lua" scheme="https://marlondu.github.io/categories/Lua/"/>
     
     
-      <category term="openresty" scheme="https://marlondu.github.io/tags/openresty/"/>
-    
       <category term="Lua" scheme="https://marlondu.github.io/tags/Lua/"/>
+    
+      <category term="openresty" scheme="https://marlondu.github.io/tags/openresty/"/>
     
   </entry>
   
