@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://marlondu.coding.me/"/>
-  <updated>2018-07-01T10:07:33.286Z</updated>
+  <updated>2018-08-12T09:35:40.215Z</updated>
   <id>https://marlondu.coding.me/</id>
   
   <author>
@@ -16,11 +16,51 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>树莓派上手</title>
+    <link href="https://marlondu.coding.me/2018/08/12/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E6%89%8B/"/>
+    <id>https://marlondu.coding.me/2018/08/12/树莓派上手/</id>
+    <published>2018-08-12T04:51:34.000Z</published>
+    <updated>2018-08-12T09:35:40.215Z</updated>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; src=&quot;https://coding.net/u/marlondu/p/my-cdn/git/raw/master/js/main.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;一直都想买个树莓派，来作为自己的私有服务器做点什
+    
+    </summary>
+    
+      <category term="其他" scheme="https://marlondu.coding.me/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+      <category term="其他" scheme="https://marlondu.coding.me/tags/%E5%85%B6%E4%BB%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>李涛老师ps摄影后期笔记续</title>
+    <link href="https://marlondu.coding.me/2018/07/08/%E6%9D%8E%E6%B6%9B%E8%80%81%E5%B8%88ps%E6%91%84%E5%BD%B1%E5%90%8E%E6%9C%9F%E7%AC%94%E8%AE%B0%E7%BB%AD/"/>
+    <id>https://marlondu.coding.me/2018/07/08/李涛老师ps摄影后期笔记续/</id>
+    <published>2018-07-08T12:02:39.000Z</published>
+    <updated>2018-07-11T15:41:02.013Z</updated>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; src=&quot;https://coding.net/u/marlondu/p/my-cdn/git/raw/master/js/main.js&quot;&gt;&lt;/script&gt;
+
+
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>我的摄影作品集2018-07</title>
     <link href="https://marlondu.coding.me/2018/07/01/%E6%88%91%E7%9A%84%E6%91%84%E5%BD%B1%E4%BD%9C%E5%93%81%E9%9B%862018-07/"/>
     <id>https://marlondu.coding.me/2018/07/01/我的摄影作品集2018-07/</id>
     <published>2018-07-01T08:52:35.000Z</published>
-    <updated>2018-07-01T10:07:33.286Z</updated>
+    <updated>2018-07-06T01:13:19.832Z</updated>
     
     <summary type="html">
     
@@ -60,7 +100,7 @@
     <link href="https://marlondu.coding.me/2018/06/03/%E4%B8%96%E7%95%8C%E5%86%9B%E4%BA%8B%E5%B0%81%E9%9D%A2%E8%AF%97%E9%80%89/"/>
     <id>https://marlondu.coding.me/2018/06/03/世界军事封面诗选/</id>
     <published>2018-06-03T12:48:53.000Z</published>
-    <updated>2018-07-01T06:38:44.052Z</updated>
+    <updated>2018-07-06T13:48:27.423Z</updated>
     
     <summary type="html">
     
@@ -84,7 +124,7 @@
     <link href="https://marlondu.coding.me/2018/04/14/zion%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/"/>
     <id>https://marlondu.coding.me/2018/04/14/zion项目启动/</id>
     <published>2018-04-14T12:40:34.000Z</published>
-    <updated>2018-06-28T13:36:57.622Z</updated>
+    <updated>2018-07-16T01:00:06.335Z</updated>
     
     <summary type="html">
     
