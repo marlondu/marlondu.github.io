@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://marlondu.coding.me/2018/08/12/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E6%89%8B/</loc>
-    <lastmod>2018-08-12T09:35:40.215Z</lastmod>
+    <lastmod>2018-08-18T10:07:11.258Z</lastmod>
     <data>
         <display>
         <title>树莓派上手</title>
@@ -53,46 +53,6 @@
         
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://marlondu.coding.me/2018/06/03/%E4%B8%96%E7%95%8C%E5%86%9B%E4%BA%8B%E5%B0%81%E9%9D%A2%E8%AF%97%E9%80%89/</loc>
-    <lastmod>2018-07-06T13:48:27.423Z</lastmod>
-    <data>
-        <display>
-        <title>《世界军事》封面诗选</title>
-        <pubTime>2018-06-03T12:48:53.000Z</pubTime>
-        
-        <tag>其他</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="https://marlondu.coding.me/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://marlondu.coding.me/2018/07/01/%E6%88%91%E7%9A%84%E6%91%84%E5%BD%B1%E4%BD%9C%E5%93%81%E9%9B%862018-07/</loc>
-    <lastmod>2018-07-06T01:13:19.832Z</lastmod>
-    <data>
-        <display>
-        <title>我的摄影作品集2018-07</title>
-        <pubTime>2018-07-01T08:52:35.000Z</pubTime>
-        
-        <tag>其他</tag>
-         
-         
-           
-             
-              <breadCrumb title="其他" url="https://marlondu.coding.me/categories/%E5%85%B6%E4%BB%96/"/>
-          
         </display>
     </data>
     </url>
@@ -272,9 +232,9 @@
         
         <tag>Lua</tag>
          
-        <tag>nginx</tag>
-         
         <tag>openresty</tag>
+         
+        <tag>nginx</tag>
          
          
            
@@ -356,9 +316,9 @@
         <title>一些文章</title>
         <pubTime>2017-04-30T15:55:17.000Z</pubTime>
         
-        <tag>Java</tag>
-         
         <tag>编程</tag>
+         
+        <tag>Java</tag>
          
          
            
