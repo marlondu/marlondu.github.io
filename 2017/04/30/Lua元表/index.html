@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="每天进步一点点"><title>Lua元表 | 杜小川</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Lua元表</h1><a id="logo" href="/.">杜小川</a><p class="description">每天进步一点点</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Lua元表</h1><div class="post-meta">2017-04-30<span> | </span><span class="category"><a href="/categories/Lua/">Lua</a></span></div><div class="post-content"><p>在 Lua 5.1 语言中，元表 <em>(metatable)</em> 的表现行为类似于 C++ 语言中的操作符重载，例如我们可以重载 “__add” 元方法 *(metamethod)*，来计算两个 Lua 数组的并集；或者重载 “__index” 方法，来定义我们自己的 Hash 函数。</p>
+<h2 id="预定义操作集合"><a href="#预定义操作集合" class="headerlink" title="预定义操作集合"></a>预定义操作集合</h2><p>其实不仅仅是LUA, 在大多数编程语言中，每一种类型的值，都有 一套预定义的操作集合。例如，整形的数值可以进行加操作，减作等，字符串类型的数值可以进行加操作等，不同的类型预定义操作或者说预定义的行为略有不同， 在LUA语言中，table类型的值默认是不能进行加操作的。但是我们能不能让table可以进行加操作呢？答案是可以。</p>
+<h2 id="元表"><a href="#元表" class="headerlink" title="元表"></a>元表</h2><p>要想使table类型的值可以进行加操作，就要为table类型的值添加一个加操作的行为，我们姑且把它叫做是非预定义的操作。这时就要用到我们要讲的元表，称之为metatable,元表也是一种数据类型，在lua语言中，我们可以为table类型的值设置metatable,来为table类型的值添加一些非预定义的操作。</p>
+<p>在lua中为我们提供的两个方法：</p>
+<ul>
+<li>setmetatable(table, metatable) 来为table变量设置metatable对象。</li>
+<li>getmetable(table) 此方法用于获取table的metatable对象。</li>
+</ul>
+<p>注意，我们使用lua只能设置table类型值的metatable，如果想设置其他类型值的metatable, 则需要通过C代码来实现。</p>
+<p>当我们在创建一个table类型的值的时候，默认是没有metatable的，因此通过getmetatable方法返回nil。</p>
+<h4 id="元表的调用方式是怎样的？"><a href="#元表的调用方式是怎样的？" class="headerlink" title="元表的调用方式是怎样的？"></a>元表的调用方式是怎样的？</h4><p>比如想要实现两个表类型值的加操作，我们可以通过定义一个元表值：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 我们定义加操作为一个取并集的操作</span></span><br><span class="line"><span class="keyword">local</span> set1 = &#123;<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>&#125;</span><br><span class="line"><span class="keyword">local</span> set2 = &#123;<span class="number">20</span>, <span class="number">40</span>, <span class="number">50</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 将用于重载_dd的函数。注意第一个参数是self</span></span><br><span class="line"><span class="keyword">local</span> union = <span class="function"><span class="keyword">function</span><span class="params">(self, another)</span></span></span><br><span class="line">    <span class="keyword">local</span> set = &#123;&#125;</span><br><span class="line">    <span class="keyword">local</span> result = &#123;&#125;</span><br><span class="line">    <span class="comment">-- 利用数组来确保集合的互异性</span></span><br><span class="line">  	<span class="keyword">for</span> i,j <span class="keyword">in</span> <span class="built_in">pairs</span>(<span class="built_in">self</span>) <span class="keyword">do</span> set[j] = <span class="literal">true</span> <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">for</span> i,j <span class="keyword">in</span> <span class="built_in">pairs</span>(another) <span class="keyword">do</span> set[j] = <span class="literal">true</span> <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- 加入结果集合</span></span><br><span class="line">    <span class="keyword">for</span> i,j <span class="keyword">in</span> <span class="built_in">pairs</span>(set) <span class="keyword">do</span> <span class="built_in">table</span>.<span class="built_in">insert</span>(result, i) <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">setmetatable</span>(set1, &#123;<span class="built_in">__add</span> = union&#125;) <span class="comment">-- 重载set1表一的__add元方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> set3 = set1 + set2</span><br><span class="line"><span class="keyword">for</span> _,j <span class="keyword">in</span> <span class="built_in">pairs</span>(set3)</span><br><span class="line">	<span class="built_in">io</span>.<span class="built_in">write</span>(j .. <span class="string">&quot; &quot;</span>) <span class="comment">--&gt; output: 20 10 40 30 50</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>计算表达式set1 + set2,具体的步骤是按照一些步骤进行的：</p>
+<ol>
+<li>先判断set1和set2两者之一是否元表</li>
+<li>检查该元表是否有一个叫__add的字段</li>
+<li>如果找到了该字段，就调用该字段的值，这个值对应的是一个元方法(metamethod);</li>
+<li>调用__add对应的metamethod字段set1和set2的和。</li>
+</ol>
+<h2 id="元方法"><a href="#元方法" class="headerlink" title="元方法"></a>元方法</h2><p>正如刚刚我们定义的__add方法，具体定义某一种的操作行为的方法，叫元方法。除了__add方法可以被重载之外，Lua提供的所有操作符都可以被重载：</p>
+<table>
+<thead>
+<tr>
+<th align="center">元方法</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">__add</td>
+<td align="center">+ 操作</td>
+</tr>
+<tr>
+<td align="center">__sub</td>
+<td align="center">- 操作 其行为类似于 “add” 操作</td>
+</tr>
+<tr>
+<td align="center">__mul</td>
+<td align="center">* 操作 其行为类似于 “add” 操作</td>
+</tr>
+<tr>
+<td align="center">__div</td>
+<td align="center">&#x2F; 操作 其行为类似于 “add” 操作</td>
+</tr>
+<tr>
+<td align="center">__mod</td>
+<td align="center">% 操作 其行为类似于 “add” 操作</td>
+</tr>
+<tr>
+<td align="center">__pow</td>
+<td align="center">^(幂) 操作 其行为类似于 “add” 操作</td>
+</tr>
+<tr>
+<td align="center">__unm</td>
+<td align="center">一元 - 操作</td>
+</tr>
+<tr>
+<td align="center">__concat</td>
+<td align="center">.. (字符串连接) 操作</td>
+</tr>
+<tr>
+<td align="center">__len</td>
+<td align="center"># 操作</td>
+</tr>
+<tr>
+<td align="center">__eq</td>
+<td align="center">&#x3D;&#x3D; 操作 函数 getcomphandler 定义了 Lua 怎样选择一个处理器来作比较操作 仅在两个对象类型相同且有对应操作相同的元方法时才起效</td>
+</tr>
+<tr>
+<td align="center">__lt</td>
+<td align="center">&lt; 操作</td>
+</tr>
+<tr>
+<td align="center">__le</td>
+<td align="center">&lt;&#x3D; 操作</td>
+</tr>
+</tbody></table>
+<p>除了操作符之外，如下方法也可可以被重载，下面会一次解释使用方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">元方法</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">__index</td>
+<td align="center">取下标操作用于访问 table[key]</td>
+</tr>
+<tr>
+<td align="center">__newindex</td>
+<td align="center">赋值给指定下标 table[key] &#x3D; value</td>
+</tr>
+<tr>
+<td align="center">__tostring</td>
+<td align="center">转换成字符串</td>
+</tr>
+<tr>
+<td align="center">__call</td>
+<td align="center">当Lua调用一个值时调用</td>
+</tr>
+<tr>
+<td align="center">__mode</td>
+<td align="center">用于弱表(week  table)</td>
+</tr>
+<tr>
+<td align="center">__metatable</td>
+<td align="center">用于保护metatable不被访问</td>
+</tr>
+</tbody></table>
+<h4 id="index-元方法"><a href="#index-元方法" class="headerlink" title="__index 元方法"></a>__index 元方法</h4><p>下面我么实现了在表中查找键不存在是转而在元表中查找该键的功能：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mytable = setmetatabe(&#123;key1 = <span class="string">&quot;value1&quot;</span>&#125;, <span class="comment">-- 原始表</span></span><br><span class="line">	&#123;<span class="built_in">__index</span> = <span class="function"><span class="keyword">function</span><span class="params">(self, key)</span></span></span><br><span class="line">    	<span class="keyword">if</span> key == <span class="string">&quot;key2&quot;</span> <span class="keyword">then</span></span><br><span class="line">        	<span class="keyword">return</span> <span class="string">&quot;metatable value&quot;</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(mytable.key1, mytable.key2) <span class="comment">--&gt; output: value1 metatale value</span></span><br></pre></td></tr></table></figure>
+
+<p>关于__index元方法，有很多比较高阶的技巧，例如：__index 的元方法不需要非是一个函数，他也可以是一个表。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t = <span class="built_in">setmetatable</span>(&#123;[<span class="number">1</span>] = <span class="string">&quot;hello&quot;</span>&#125;, &#123;<span class="built_in">__index</span> = &#123;[<span class="number">2</span>] = <span class="string">&quot;world&quot;</span>&#125;&#125;)</span><br><span class="line"><span class="built_in">print</span>(t[<span class="number">1</span>], t[<span class="number">2</span>])   <span class="comment">--&gt;hello world</span></span><br></pre></td></tr></table></figure>
+
+<p>第一句代码有点绕，解释一下：先是把 {__index &#x3D; {}} 作为元表，但 __index 接受一个表，而不是函数，这个表中包含 [2] &#x3D; “world” 这个键值对。 所以当 t[2] 去在自身的表中找不到时，在 __index 的表中去寻找，然后找到了 [2] &#x3D; “world” 这个键值对。</p>
+<p>利用这个特性，我们可以利用__index来实现lua语言的面向对象</p>
+<h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><p>在 Lua 中，我们可以使用表和函数实现面向对象。将函数和相关的数据放置于同一个表中就形成了一个对象。</p>
+<p>下面是account.lua的源码：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 元表对象，我们在_M中放置我们要定义的类的函数和相关的数据</span></span><br><span class="line"><span class="keyword">local</span> _M = &#123;&#125;</span><br><span class="line"><span class="comment">-- 元表，将_M赋值给__index, 这样当访问类对象的函数或者数据时找不到，就会调用_M中的</span></span><br><span class="line"><span class="keyword">local</span> mt = &#123; <span class="built_in">__index</span> = _M &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_M.deposit</span> <span class="params">(self, v)</span></span></span><br><span class="line">    <span class="built_in">self</span>.balance = <span class="built_in">self</span>.balance + v</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_M.withdraw</span> <span class="params">(self, v)</span></span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">self</span>.balance &gt; v <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">self</span>.balance = <span class="built_in">self</span>.balance - v</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">error</span>(<span class="string">&quot;insufficient funds&quot;</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_M.new</span> <span class="params">(self, balance)</span></span></span><br><span class="line">    balance = balance <span class="keyword">or</span> <span class="number">0</span></span><br><span class="line">  	<span class="comment">-- &#123;balance = balance&#125; new的对象，并设置元表mt</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">setmetatable</span>(&#123;balance = balance&#125;, mt)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> _M</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>引用代码示例:</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> account = <span class="built_in">require</span>(<span class="string">&quot;account&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> a = account:new()</span><br><span class="line">a:deposit(<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> b = account:new()</span><br><span class="line">b:deposit(<span class="number">50</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a.balance)  <span class="comment">--&gt; output: 100</span></span><br><span class="line"><span class="built_in">print</span>(b.balance)  <span class="comment">--&gt; output: 50</span></span><br></pre></td></tr></table></figure>
+
+<p>上面这段代码 “setmetatable({balance &#x3D; balance}, mt)”，其中 mt 代表 <code>&#123; __index = _M &#125;</code> ，这句话值得注意。根据我们上面学到的知识，我们明白，setmetatable 将 <code>_M</code> 作为新建表的原型，所以在自己的表内找不到 ‘deposit’、’withdraw’ 这些方法和变量的时候，便会到 __index 所指定的 _M 类型中去寻找。</p>
+<p>__index 元方法还可以实现给表中每一个值赋上默认值；和 __newindex 元方法联合监控对表的读取、修改等比较高阶的功能，待读者自己去开发吧。</p>
+<blockquote>
+<p>其他具体可以参考</p>
+<p><a href="http://www.jellythink.com/archives/511">Lua中的元表与元方法</a></p>
+<p><a href="https://moonbingbing.gitbooks.io/openresty-best-practices/content/lua/metatable.html">LUA元表</a></p>
+</blockquote>
+</div><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua/" rel="tag">Lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/" rel="tag">openresty</a></li></ul></div><div class="post-nav"><a class="pre" href="/2017/04/30/%E4%B8%80%E4%BA%9B%E6%96%87%E7%AB%A0/">一些文章</a><a class="next" href="/2017/04/29/logback%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/">logback配置详解</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://marlondu.coding.me"/></form></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img class="nofancybox" src="/img/avatar.png"/></a><p>To be a better man.</p><a class="info-icon" href="https://twitter.com/username" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:admin@domain.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/marlondu" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DB/">DB</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/others/">others</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Lua/" style="font-size: 15px;">Lua</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/openresty/" style="font-size: 15px;">openresty</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/DB/" style="font-size: 15px;">DB</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 15px;">编程</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/PS/" style="font-size: 15px;">PS</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 15px;">其他</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 15px;">爬虫</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/06/16/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/26/python%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/">python自动聊天机器人</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/08/Java%E5%8A%A8%E6%80%81%E7%BC%96%E8%AF%91/">Java动态编译</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/12/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E6%89%8B/">树莓派上手</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/08/%E6%9D%8E%E6%B6%9B%E8%80%81%E5%B8%88ps%E6%91%84%E5%BD%B1%E5%90%8E%E6%9C%9F%E7%AC%94%E8%AE%B0%E7%BB%AD/">李涛老师ps摄影后期笔记续</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/28/%E6%9D%8E%E6%B6%9B%E8%80%81%E5%B8%88ps%E6%91%84%E5%BD%B1%E5%90%8E%E6%9C%9F%E7%AC%94%E8%AE%B0/">李涛老师ps摄影后期笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/14/zion%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/">zion项目启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/04/spring%E5%B0%8F%E8%AE%B0%E4%B9%8BBean/">Spring小记之Bean</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/20/GO%E8%AF%AD%E8%A8%80%E8%A7%A3%E6%83%91%E4%B9%8B%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8C%87%E9%92%88/">Go语言解惑(一)变量与指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/16/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BF%9D%E9%9A%9C/">redis学习笔记(二) 性能保障</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://github.com/marlondu" title="Github" target="_blank">Github</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">杜小川.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

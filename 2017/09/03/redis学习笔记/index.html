@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="每天进步一点点"><title>redis学习笔记(一) 数据安全 | 杜小川</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><meta name="generator" content="Hexo 7.2.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">redis学习笔记(一) 数据安全</h1><a id="logo" href="/.">杜小川</a><p class="description">每天进步一点点</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">redis学习笔记(一) 数据安全</h1><div class="post-meta">2017-09-03<span> | </span><span class="category"><a href="/categories/DB/">DB</a></span></div><div class="post-content"><p>这篇笔记会介绍Redis的各个持久化选项，这些选项可以让用户将自己的数据存储到硬盘上面。接着将介绍如何通过Redis的 复制特性，把不断更新的数据副本存储到附加的机器上面，从而提升系统的性能和数据的可靠性。现在我们来看看Redis如何将数据存储到硬盘里面，使得数据在Redis重启之后仍然存在的。</p>
+<h2 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h2><p>redis提供了两种不同的持久化方法将数据持久化到硬盘里面。一种叫做快照(snapshoting), 它可以将某一时刻的所有数据都写入硬盘里面。另一中方法叫做之追加文件(append-only file, AOF)， 他会在执行写命令时， 将被执行的写命令复制到硬盘里面。这两中方法既可以同时使用，也可以单独使用。</p>
+<p><strong>持久化配置选项</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 持久化快照</span><br><span class="line">save 60 1000</span><br><span class="line">stop-writes-on-bgsave-error no</span><br><span class="line">rdbcompression yes</span><br><span class="line">dbfilename dump.rdb</span><br><span class="line"># AOF</span><br><span class="line">appendonly no</span><br><span class="line">appendfsync everysec</span><br><span class="line">no-appendfsync-on-rewrite no</span><br><span class="line">auto-aof-rewrite-percentage 100</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br><span class="line">#  共享选项，这个选项决定了快照文件和AOF文件的保存位置</span><br><span class="line">dir ./</span><br></pre></td></tr></table></figure>
+
+<p>​                                                                                          conf-4.1</p>
+<h3 id="快照持久化"><a href="#快照持久化" class="headerlink" title="快照持久化"></a>快照持久化</h3><p>根据配置，快照将被写入dbfilename选项指定的文件里面，并存储在dir选项指定的路径里面。一般情况下，系统崩溃后，将丢失最近一次创建快照之后的数据。</p>
+<p>创建快照的方式有以下几种。</p>
+<ul>
+<li>客户端通过Redis发送BGSAVE命令来创建一个快照。对于BGSAVE，Redis会fork一个子进程来负责创建快照，而父进程则继续处理命令请求。</li>
+<li>也可以通过Redis发送SAVE命令来创建一个快照，不过这时Redis服务器在创建快照完毕之前无法响应其他命令，故此命令不常用。</li>
+<li>如果用户设置可save配置选项，比如save 60 1000, 那么从最近一次创建快照之后算起，当”60秒内有1000次写入“这个条件满足时， Redis会自动出发BGSAVE命令。如果配置了多个save选项，则任意个满足就会 出发BGSAVE命令。</li>
+<li>当Redis通过shutdown命令接受到关闭 服务器的请求时，或者收到标准term信号时，会执行一个SAVE命令，阻塞所有客户端，不在执行客户单发送的命令，并在save命令完成之后再关闭服务器。</li>
+<li>当一个redis服务器链接另一个redis服务器，并向对方发送sync命令来开始一次复制操作的时候，如果主服务器目前没有在执行bgsave操作，或者主服务器并非刚刚执行完bgsave操作，那么主服务器就会执行bgsave命令。</li>
+</ul>
+<h3 id="AOF持久化"><a href="#AOF持久化" class="headerlink" title="AOF持久化"></a>AOF持久化</h3><p>简单来说，AOF持久化将被执行的写命令写到AOF文件按的末尾，一次来记录数据发生的变化。因此，Redis只需从头到尾重新执行一次AOF文件包含的写命令，就可以恢复数据。</p>
+<p>AOF可以通过配置 appendonly yes来打开。</p>
+<p><strong>appendfsync</strong>配置选项对AOF文件的频率进行设置:</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>同步频率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>always</td>
+<td>每个写命令都要同步写入硬盘。这样会严重降低Redis的速度</td>
+</tr>
+<tr>
+<td>everysec</td>
+<td>每秒执行一次，显式的将多个写命令同步到硬盘(推荐)</td>
+</tr>
+<tr>
+<td>no</td>
+<td>让操作系统来决定何时进行同步</td>
+</tr>
+</tbody></table>
+<h4 id="AOF缺点"><a href="#AOF缺点" class="headerlink" title="AOF缺点"></a>AOF缺点</h4><ol>
+<li>因为Redi会不断的将被执行的写命令记录到AOF文件里面，随着redis的不断运行，AOF文件按会不断的增大，甚至可能会用完硬盘的所有可用空间。</li>
+<li>因为redis在重启之后需要通过执行AOF中所有的写命令来恢复数据，所以如果AOF文件非常大，那么还原操作执行的时间会非常长。</li>
+</ol>
+<p>为了解决AOF文件体积不断增大的问题，用户可以向Redis发送BGREWRITEAOF命令，这个命令会通过移除AOF文件中的冗余命令来重写AOF文件，使AOF文件的体积变的尽可能的小。BGREWRITEAOF命令的工作原理和BGSAVE相似，会创建一个子进程，所以也会导致性能和内存占用问题。更糟糕的是，AOF文件按的体积可能会比快照文件按大好几倍，在进行AOF重写和删除的时候，可能会导致系统挂起数秒。</p>
+<p>跟快照一样，AOF持久化可以通过设置auto-aof-rewrite-percentage选项和auto-aof-rewrite-min-size来自动执行BGREWRITEAOF。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-percentage 100</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br></pre></td></tr></table></figure>
+
+<p>那么当AOF文件的体积大于64MB, 并且AOF文件的体积比上一次重写的体积至少大一倍(100%)时，将执行BGREWRITEAOF命令。</p>
+<p>不管怎样，将数据持久化到硬盘上都是有必要的，初次之外，用户还必须对持久化所得的文件进行备份，来防止数据 丢失。</p>
+<h2 id="主从服务器"><a href="#主从服务器" class="headerlink" title="主从服务器"></a>主从服务器</h2><p>对于有扩展平台以适应更高负载经验的工程师和管理员来说，复制(replication)是不可或缺的。复制可以让其他服务器有一个不断更新的数据副本，从而使得拥有数据副本的服务器 可以用于处理客户端发送的读请求。关系数据通常会使用一个主服务器(master)向多个从服务器(slave)发送更新，并使用从服务器处理读请求。Redis也同样采用这种手段。</p>
+<p>在需要扩展读请求的手，或者在需要写入临时数据的时候，用户可以通过设置额外的Redis从服务器来保存数据集的副本。在收到住服务器发送的数据初始副本(initial copy of the data)之后，客户端每次向主服务器写入时，从服务器都会实时地得到更新。在部署好主从服务器之后，客户端就可以向任意一个从服务器发送读请求了。</p>
+<h3 id="主从配置"><a href="#主从配置" class="headerlink" title="主从配置"></a>主从配置</h3><p>由于当从服务器连接上主服务器的时候，主服务器会执行BGSAVE操作。因此为了正确的使用复制特性，用户需要保证主服务器已经争取的配置了上面4-1配置中的dir选项和dbfilename选项，并且两个选项执行的路径和文件对于Redis进程都是可写的。</p>
+<p>开启从服务器所必须的选项只有slaveof一个，如果用户在启动Redis服务器的时候，指定了一个包含slaveof host port选项的配置文件，那么Redis服务器将根据该选项给定的IP地址和端口号来连接主服务器。对于一个正在运行的Redis服务器，用户可以通过发送SLAVEOF no one命令来让服务器终止复制操作，不在接受主服务器的数据更新；也可以发送SLAVEOF host port命令来让服务器开始复制一个新的主服务器。</p>
+<h4 id="Redis复制的启动过程"><a href="#Redis复制的启动过程" class="headerlink" title="Redis复制的启动过程"></a>Redis复制的启动过程</h4><p>​								表4-2</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>主服务器操作</th>
+<th>从服务器操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>(等待命令进入)</td>
+<td>连接(或者重连接)主服务器，发送sync命令</td>
+</tr>
+<tr>
+<td>2</td>
+<td>开始执行BGSAVE,并使用缓冲区记录BGSAVE之后执行的所有命令</td>
+<td>根据配置选项来决定时继续使用现有的数据(如果有的话)来处理客户请求，还是向发送请求的客户端  返回错误</td>
+</tr>
+<tr>
+<td>3</td>
+<td>BGSAVE执行完毕，向从服务器发送快照文件，并在发送期间继续使用缓冲区记录被执行的写命令</td>
+<td>丢弃所有旧数据(如果有)，开始载入主服务器发来的快照文件</td>
+</tr>
+<tr>
+<td>4</td>
+<td>快照发送完毕，开始向从服务器发送存储在缓冲区的写命令</td>
+<td>完成对快照的解释  操作，像往常一样开始接受命令请求</td>
+</tr>
+<tr>
+<td>5</td>
+<td>缓冲区缓存的写命令发送完毕，从现在开始没执行一个写命令，就向从服务器发送相同的写命令</td>
+<td>执行主服务器发来的所有存储在缓冲区的写命令，并从现在开始，接收并执行主服务器传来的每个写命令。</td>
+</tr>
+</tbody></table>
+<h4 id="主从链"><a href="#主从链" class="headerlink" title="主从链"></a>主从链</h4><p>当读请求的重要性明显高于写请求的重要性，并且读请求的数量远远高出一台Redis服务器可以处理的范围，用户就需要添加新的从服务器来处理请求。随着负载不断上升，主服务器可能会无法快速的更新所有从服务器，或者因为重新连接和重新同步从服务器导致系统超载。为了缓解这个问题，用户可以创建一个由Redis主从节点(master&#x2F;slave node)组成中间层来分担主服务器的复制工作。如下图所示：</p>
+<p>​								</p>
+<p><img src="http://op9zsndca.bkt.clouddn.com/redis-4-1.png"></p>
+</div><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/" rel="tag">redis</a></li></ul></div><div class="post-nav"><a class="pre" href="/2017/10/28/git%E5%B0%8F%E8%AE%B0/">git小记</a><a class="next" href="/2017/08/03/postgresql%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">postgresql安装配置</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://marlondu.coding.me"/></form></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img class="nofancybox" src="/img/avatar.png"/></a><p>To be a better man.</p><a class="info-icon" href="https://twitter.com/username" title="Twitter" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:admin@domain.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/marlondu" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DB/">DB</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/others/">others</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Lua/" style="font-size: 15px;">Lua</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/openresty/" style="font-size: 15px;">openresty</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 15px;">日志</a> <a href="/tags/DB/" style="font-size: 15px;">DB</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 15px;">编程</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/PS/" style="font-size: 15px;">PS</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 15px;">其他</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 15px;">爬虫</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/06/16/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/26/python%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/">python自动聊天机器人</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/08/Java%E5%8A%A8%E6%80%81%E7%BC%96%E8%AF%91/">Java动态编译</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/12/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E6%89%8B/">树莓派上手</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/08/%E6%9D%8E%E6%B6%9B%E8%80%81%E5%B8%88ps%E6%91%84%E5%BD%B1%E5%90%8E%E6%9C%9F%E7%AC%94%E8%AE%B0%E7%BB%AD/">李涛老师ps摄影后期笔记续</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/28/%E6%9D%8E%E6%B6%9B%E8%80%81%E5%B8%88ps%E6%91%84%E5%BD%B1%E5%90%8E%E6%9C%9F%E7%AC%94%E8%AE%B0/">李涛老师ps摄影后期笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/14/zion%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/">zion项目启动</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/04/spring%E5%B0%8F%E8%AE%B0%E4%B9%8BBean/">Spring小记之Bean</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/20/GO%E8%AF%AD%E8%A8%80%E8%A7%A3%E6%83%91%E4%B9%8B%E5%8F%98%E9%87%8F%E4%B8%8E%E6%8C%87%E9%92%88/">Go语言解惑(一)变量与指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/16/redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BF%9D%E9%9A%9C/">redis学习笔记(二) 性能保障</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://github.com/marlondu" title="Github" target="_blank">Github</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">杜小川.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
